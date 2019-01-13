@@ -1,2 +1,3 @@
 # nomad-plugin-singularity
-Nomad plugin - Singularity .
+
+[Hashicorp Nomad]([Amazon Firecracker](https://firecracker-microvm.github.io/)) plugin using [Singularity containers](https://github.com/sylabs/singularity) to execute tasks.
