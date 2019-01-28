@@ -1,0 +1,21 @@
+# Gopkg.toml
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/hashicorp/go-hclog"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/hashicorp/go-plugin"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/hashicorp/nomad"
+
+[[constraint]]
+  name = "github.com/sylabs/singularity"
+  version = "3.0.3"
+
+[prune]
+  go-tests = true
+  unused-packages = true

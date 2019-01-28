@@ -1,4 +1,4 @@
-NAME := nomad-plugin-singularity
+NAME := nomad-driver-singularity
 PKG := github.com/sylabs/$(NAME)
 
 CGO_ENABLED := 0
