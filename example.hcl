@@ -1,3 +1,5 @@
+// Copyright (c) 2019, Sylabs Inc. All rights reserved.
+
 job "example" {
   datacenters = ["dc1"]
   type        = "batch"
@@ -9,7 +11,7 @@ job "example" {
       driver = "singularity"
 
       config {
-        image_path = "/root/hello-rootfs.ext4"
+        image_path = "/home/user/example/lolcow.sif"
       }
     }
   }
