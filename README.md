@@ -12,17 +12,16 @@ Requirements
 Building The Driver
 ---------------------
 
-Clone repository to: `$GOPATH/src/github.com/sylabs/nomad-driver-singularity
+Clone repository on your prefered path
 
 ```sh
-$ mkdir -p $GOPATH/src/github.com/sylabs; cd $GOPATH/src/github.com/
 $ git clone git@github.com:sylabs/nomad-driver-singularity
 ```
 
 Enter the provider directory and build the provider
 
 ```sh
-$ cd $GOPATH/src/github.com/sylabs/nomad-driver-singularity
+$ nomad-driver-singularity
 $ make dep
 $ make build
 ```
@@ -30,7 +29,7 @@ $ make build
 Developing the Provider
 ---------------------------
 
-If you wish to work on the driver, you'll first need [Go](http://www.golang.org) installed on your machine, and have have `singularity` installed. You'll also need to correctly setup a [GOPATH](http://golang.org/doc/code.html#GOPATH), as well as adding `$GOPATH/bin` to your `$PATH`.
+If you wish to contribute on the project, you'll first need [Go](http://www.golang.org) installed on your machine, and have have `singularity` installed.
 
 To compile the provider, run `make build`. This will build the provider and put the task driver binary under the NOMAD plugin dir, which by deafult is located under `<nomad-data-dir>/plugins/`.
 Check Nomad `-data-dir` and `-plugin-dir` flags for more information.
