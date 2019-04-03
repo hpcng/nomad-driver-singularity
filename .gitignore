@@ -1,1 +1,2 @@
-builddir/
+vendor/
+nomad-driver-singularity
