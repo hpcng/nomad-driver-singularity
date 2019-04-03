@@ -5,9 +5,9 @@
 Requirements
 ------------
 
-- [Nomad](https://www.nomadproject.io/downloads.html) 0.9+
-- [Go](https://golang.org/doc/install) 1.11 (to build the provider plugin)
-- [Singularity](https://github.com/singularityware/singularity) 3.0.3+
+- [Nomad](https://www.nomadproject.io/downloads.html) v0.9+
+- [Go](https://golang.org/doc/install) v1.11+ (to build the provider plugin)
+- [Singularity](https://github.com/singularityware/singularity) v3.0.3+
 
 Building The Driver
 ---------------------
@@ -23,6 +23,7 @@ Enter the provider directory and build the provider
 
 ```sh
 $ cd $GOPATH/src/github.com/sylabs/nomad-driver-singularity
+$ make dep
 $ make build
 ```
 
@@ -31,7 +32,8 @@ Developing the Provider
 
 If you wish to work on the driver, you'll first need [Go](http://www.golang.org) installed on your machine, and have have `singularity` installed. You'll also need to correctly setup a [GOPATH](http://golang.org/doc/code.html#GOPATH), as well as adding `$GOPATH/bin` to your `$PATH`.
 
-To compile the provider, run `make build`. This will build the provider and put the provider binary in the `$GOPATH/bin` directory.
+To compile the provider, run `make build`. This will build the provider and put the task driver binary under the NOMAD plugin dir, which by deafult is located under `<nomad-data-dir>/plugins/`.
+Check Nomad `-data-dir` and `-plugin-dir` flags for more information.
 
 ```sh
 $ make build
