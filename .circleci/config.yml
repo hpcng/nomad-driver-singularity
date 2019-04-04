@@ -83,7 +83,8 @@ jobs:
       - run:
           name: Check for Lint
           command: markdownlint --config src/.markdownlint.json src/
-
+workflows:
+  version: 2
   build_and_test:
     jobs:
       - get_source
