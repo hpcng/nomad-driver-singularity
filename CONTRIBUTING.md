@@ -11,14 +11,13 @@ works, incorporate into other computer software, distribute, and sublicense
 such enhancements or derivative works thereof, in binary and source code
 form.
 
+## Contributing
 
-# Contributing
-
-When contributing to [sylabs/nomad-driver-singularity](https://github.com/sylabs/nomad-driver-singularity/), it
-is important to properly communicate the gist of the contribution. If it is a simple code or
-editorial fix, simply explaining this within the GitHub Pull Request (PR) will suffice. But
-if this is a larger fix or Enhancement, you are advised to first discuss the change
-with the project leader or developers.
+When contributing to [sylabs/nomad-driver-singularity](https://github.com/sylabs/nomad-driver-singularity/)
+it is important to properly communicate the gist of the contribution.
+If it is a simple code or editorial fix, simply explaining this within
+the GitHub Pull Request (PR) will suffice. But if this is a larger fix or Enhancement,
+you are advised to first discuss the change with the project leader or developers.
 
 Please note we have a code of conduct, described below. Please follow it in
 all your interactions with the project members and users.
@@ -26,6 +25,7 @@ all your interactions with the project members and users.
 ## Pull Requests (PRs)
 
 ### Process
+
 1. Essential bug fix PRs should be sent to both master and release branches.
 2. Small bug fix and feature enhancement PRs should be sent to master only.
 3. Follow the existing code style precedent, especially for C. For Golang, you
@@ -45,9 +45,9 @@ all your interactions with the project members and users.
    requirements are met.
 10. Documentation must be provided if necessary (next section)
 
-# Code of Conduct
+## Code of Conduct
 
-## Our Pledge
+### Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as
 contributors and maintainers pledge to making participation in our project and
@@ -56,7 +56,7 @@ size, disability, ethnicity, gender identity and expression, level of experience
 nationality, personal appearance, race, religion, or sexual identity and
 orientation.
 
-## Our Standards
+### Our Standards
 
 Examples of behavior that contributes to creating a positive environment
 include:
@@ -90,7 +90,7 @@ that are not aligned to this Code of Conduct, or to ban temporarily or
 permanently any contributor for other behaviors that they deem inappropriate,
 threatening, offensive, or harmful.
 
-## Scope
+### Scope
 
 This Code of Conduct applies both within project spaces and in public spaces
 when an individual is representing the project or its community. Examples of
@@ -99,7 +99,7 @@ address, posting via an official social media account, or acting as an appointed
 representative at an online or offline event. Representation of a project may be
 further defined and clarified by project maintainers.
 
-## Enforcement
+### Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported by contacting the project leaders (info@sylabs.io). All
@@ -113,10 +113,10 @@ Project maintainers, contributors and users who do not follow or enforce the
 Code of Conduct in good faith may face temporary or permanent repercussions
 with their involvement in the project as determined by the project's leader(s).
 
-## Attribution
+### Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at [http://contributor-covenant.org/version/1/4][version]
+This Code of Conduct is adapted from the [Contributor Covenant][homepage],
+version 1.4, available at [http://contributor-covenant.org/version/1/4][version]
 
 [homepage]: http://contributor-covenant.org
 [version]: http://contributor-covenant.org/version/1/4/

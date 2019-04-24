@@ -2,6 +2,7 @@ module github.com/sylabs/nomad-driver-singularity
 
 require (
 	github.com/LK4D4/joincontext v0.0.0-20171026170139-1724345da6d5 // indirect
+	github.com/Microsoft/go-winio v0.4.12 // indirect
 	github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6 // indirect
 	github.com/fsnotify/fsnotify v1.4.7 // indirect
 	github.com/go-ole/go-ole v1.2.2 // indirect

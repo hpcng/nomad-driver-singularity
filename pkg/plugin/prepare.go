@@ -9,24 +9,10 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"os/exec"
-	"path/filepath"
 
 	"github.com/hashicorp/nomad/client/lib/fifo"
 	"github.com/hashicorp/nomad/plugins/drivers"
 )
-
-func getAbsolutePath(bin string) (string, error) {
-	lp, err := exec.LookPath(bin)
-	if err != nil {
-		lp, err = exec.LookPath(singularityCmd)
-		if err != nil {
-			return "", fmt.Errorf("failed to resolve path to %q executable: %v", bin, err)
-		}
-	}
-
-	return filepath.EvalSymlinks(lp)
-}
 
 // prepareContainer preloads the taskcnf into args to be apssed to a execCmd
 func prepareContainer(cfg *drivers.TaskConfig, taskCfg TaskConfig) syexec {
