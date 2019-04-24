@@ -97,7 +97,7 @@ func (h *taskHandle) shutdown(timeout time.Duration) error {
 		}
 	case err := <-done:
 		if err != nil {
-			fmt.Errorf("process finished with error = %v", err)
+			return fmt.Errorf("process finished with error = %v", err)
 		}
 	}
 
