@@ -1,5 +1,5 @@
-# Maintainers:
+# Maintainers
 
 - Eduardo Arango <eduardo@sylabs.io>
 
-# Contributors:
+## Contributors
