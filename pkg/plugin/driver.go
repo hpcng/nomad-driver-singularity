@@ -30,8 +30,8 @@ const (
 	// and understands how to decode driver state
 	taskHandleVersion = 1
 
-	// singularityCmd is the command singularity is installed as.
-	singularityCmd = "/usr/local/bin/singularity"
+	// singularityBIN is the singularity binary path.
+	singularityBIN = "/usr/local/bin/singularity"
 )
 
 var (
@@ -57,6 +57,7 @@ var (
 			hclspec.NewAttr("volumes_enabled", "bool", false),
 			hclspec.NewLiteral("true"),
 		),
+		"singularity_cache": hclspec.NewAttr("singularity_cache", "string", false),
 	})
 
 	// taskConfigSpec is the hcl specification for the driver config section of
@@ -126,7 +127,7 @@ type Config struct {
 
 	AllowVolumes bool `codec:"volumes_enabled"`
 
-	SingularityPath string `codec:"singularity_path"`
+	SingularityCache string `codec:"singularity_cache"`
 }
 
 // TaskConfig is the driver configuration of a task within a job
@@ -292,7 +293,7 @@ func (d *Driver) RecoverTask(handle *drivers.TaskHandle) error {
 		return fmt.Errorf("failed to decode driver config: %v", err)
 	}
 
-	se := prepareContainer(handle.Config, driverConfig)
+	se := prepareContainer(d, handle.Config, driverConfig)
 
 	if err := se.startContainer(taskState.TaskConfig); err != nil {
 		return fmt.Errorf("unable to start container: %v", err)
@@ -327,7 +328,7 @@ func (d *Driver) StartTask(cfg *drivers.TaskConfig) (*drivers.TaskHandle, *drive
 	handle := drivers.NewTaskHandle(taskHandleVersion)
 	handle.Config = cfg
 
-	se := prepareContainer(cfg, driverConfig)
+	se := prepareContainer(d, cfg, driverConfig)
 	se.logger = d.logger
 
 	if err := se.startContainer(cfg); err != nil {
