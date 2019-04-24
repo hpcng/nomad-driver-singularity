@@ -31,7 +31,7 @@ Developing the Provider
 
 If you wish to contribute on the project, you'll first need [Go](http://www.golang.org) installed on your machine, and have have `singularity` installed.
 
-To compile the provider, run `make build`. This will build the provider and put the task driver binary under the NOMAD plugin dir, which by deafult is located under `<nomad-data-dir>/plugins/`.
+To compile the provider, run `make build`. This will build the provider and put the task driver binary under the NOMAD plugin dir, which by default is located under `<nomad-data-dir>/plugins/`.
 Check Nomad `-data-dir` and `-plugin-dir` flags for more information.
 
 ```sh
