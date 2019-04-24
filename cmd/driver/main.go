@@ -28,5 +28,5 @@ func factory(log log.Logger) interface{} {
 
 func init() {
 	// Initialize user agent strings
-	useragent.InitValue("singularity", "3.0.3")
+	useragent.InitValue("singularity", "3.1.1")
 }

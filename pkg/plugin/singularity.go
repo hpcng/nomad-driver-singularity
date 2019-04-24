@@ -6,6 +6,7 @@
 package singularity
 
 import (
+	"fmt"
 	"io"
 	"os/exec"
 	"strings"
@@ -24,6 +25,7 @@ const (
 type syexec struct {
 	argv         []string
 	cmd          *exec.Cmd
+	cachedir     string
 	taskConfig   TaskConfig
 	cfg          *drivers.TaskConfig
 	stdout       io.WriteCloser
@@ -47,7 +49,7 @@ type psState struct {
 func (s *syexec) startContainer(commandCfg *drivers.TaskConfig) error {
 	s.logger.Debug("launching command", strings.Join(s.argv, " "))
 
-	cmd := exec.Command(singularityCmd, s.argv...)
+	cmd := exec.Command(singularityBIN, s.argv...)
 
 	// set the writers for stdout and stderr
 	stdout, err := s.Stdout()
@@ -64,9 +66,9 @@ func (s *syexec) startContainer(commandCfg *drivers.TaskConfig) error {
 
 	// set the task dir as the working directory for the command
 	cmd.Dir = commandCfg.TaskDir().Dir
-	cmd.Path = singularityCmd
+	cmd.Path = singularityBIN
 	cmd.Args = append([]string{cmd.Path}, s.argv...)
-	cmd.Env = s.env
+	cmd.Env = append(s.env, fmt.Sprintf("SINGULARITY_CACHEDIR=%s", s.cachedir))
 
 	// Start the process
 	if err := cmd.Run(); err != nil {
