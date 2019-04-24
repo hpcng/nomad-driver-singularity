@@ -7,7 +7,6 @@ package singularity
 
 import (
 	"io"
-	"os"
 	"os/exec"
 	"strings"
 	"syscall"
@@ -18,22 +17,6 @@ import (
 )
 
 const (
-	// RuntimeName is the official name of Singularity runtime.
-	runtimeName = "singularity"
-
-	// StarterName is the name of executable that is responsible for runtime start.
-	starterName = "starter"
-
-	// LibraryURL is a default singularity library server address.
-	libraryURL = "https://library.sylabs.io"
-
-	// LibraryDomain holds the sylabs cloud library primary domain.
-	// For more info refer to https://cloud.sylabs.io/library.
-	libraryDomain = "cloud.sylabs.io"
-
-	// KeysServer is a default singularity key management and verification server.
-	keysServer = "https://keys.sylabs.io"
-
 	// defaultFailedCode for singularity runtime
 	defaultFailedCode = 255
 )
@@ -43,12 +26,9 @@ type syexec struct {
 	cmd          *exec.Cmd
 	taskConfig   TaskConfig
 	cfg          *drivers.TaskConfig
-	stdoutPath   string
 	stdout       io.WriteCloser
-	stderrPath   string
 	stderr       io.WriteCloser
 	env          []string
-	user         string
 	TaskDir      string
 	state        *psState
 	containerPid int
@@ -112,15 +92,15 @@ func (s *syexec) startContainer(commandCfg *drivers.TaskConfig) error {
 
 // waitTillStopped blocks and returns true when container exit;
 // returns false with an error message if the container processes cannot be identified.
-func (s *syexec) waitTillStopped() (bool, error) {
-	ps, err := os.FindProcess(s.containerPid)
-	if err != nil {
-		return false, err
-	}
+// func (s *syexec) waitTillStopped() (bool, error) {
+// 	ps, err := os.FindProcess(s.containerPid)
+// 	if err != nil {
+// 		return false, err
+// 	}
 
-	for {
-		if err := ps.Signal(syscall.Signal(0)); err != nil {
-			return true, nil
-		}
-	}
-}
+// 	for {
+// 		if err := ps.Signal(syscall.Signal(0)); err != nil {
+// 			return true, nil
+// 		}
+// 	}
+// }
