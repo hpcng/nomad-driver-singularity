@@ -44,11 +44,7 @@ vet: ## Verifies `go vet` passes.
 .PHONY: cover
 cover: ## Runs go test with coverage.
 	@echo "" > coverage.txt
-	$(V)GO111MODULE=on $(GO) test -race -coverprofile=profile.out -covermode=atomic ./...; \
-	if [ -f profile.out ]; then \
-		cat profile.out >> coverage.txt; \
-		rm profile.out; \
-	fi;
+	$(V)GO111MODULE=on $(GO) test -race -coverprofile=coverage.txt -covermode=atomic ./...; \
 
 .PHONY: clean
 clean: ## Cleanup any build binaries or packages.
