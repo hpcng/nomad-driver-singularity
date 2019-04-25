@@ -54,17 +54,18 @@ jobs:
          command: golangci-lint run
 
   lint_markdown:
+    <<: *defaults
     docker:
-      - image: circleci/ruby:2.4.1-node
+      - image: node:11-slim
     steps:
       - attach_workspace:
-          at: .
+          at: /
       - run:
           name: Install markdownlint
-          command: sudo npm install -g markdownlint-cli
+          command: npm install -g markdownlint-cli
       - run:
           name: Check for Lint
-          command: markdownlint --config src/.markdownlint.json src/
+          command: markdownlint .
 
 workflows:
   version: 2
