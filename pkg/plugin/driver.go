@@ -293,7 +293,8 @@ func (d *Driver) RecoverTask(handle *drivers.TaskHandle) error {
 		return fmt.Errorf("failed to decode driver config: %v", err)
 	}
 
-	se := prepareContainer(d, handle.Config, driverConfig)
+	se := prepareContainer(handle.Config, driverConfig)
+	se.cachedir = d.config.SingularityCache
 
 	if err := se.startContainer(taskState.TaskConfig); err != nil {
 		return fmt.Errorf("unable to start container: %v", err)
@@ -328,7 +329,8 @@ func (d *Driver) StartTask(cfg *drivers.TaskConfig) (*drivers.TaskHandle, *drive
 	handle := drivers.NewTaskHandle(taskHandleVersion)
 	handle.Config = cfg
 
-	se := prepareContainer(d, cfg, driverConfig)
+	se := prepareContainer(cfg, driverConfig)
+	se.cachedir = d.config.SingularityCache
 	se.logger = d.logger
 
 	if err := se.startContainer(cfg); err != nil {
