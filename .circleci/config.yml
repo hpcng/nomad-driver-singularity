@@ -41,24 +41,6 @@ jobs:
           name: Build Source
           command: make build
 
-  check_formatting:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: /
-      - run:
-          name: Check Formatting
-          command: test -z $(go fmt ./...)
-
-  vet_source:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: /
-      - run:
-          name: Vet Source
-          command: make vet
-
   lint_source:
     <<: *defaults
     steps:
@@ -69,7 +51,7 @@ jobs:
          command: curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin v1.15.0
      - run:
          name: Check for Lint
-         command: golangci-lint run ./...
+         command: golangci-lint run
 
   lint_markdown:
     docker:
@@ -91,12 +73,6 @@ workflows:
     jobs:
       - get_source
       - build_source:
-          requires:
-            - get_source
-      - check_formatting:
-          requires:
-            - get_source
-      - vet_source:
           requires:
             - get_source
       - lint_source:

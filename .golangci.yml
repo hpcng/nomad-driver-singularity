@@ -1,0 +1,9 @@
+linters:
+  enable-all: true
+  disable:
+    - gochecknoglobals
+    - gocritic
+    - lll
+    - maligned
+    - stylecheck
+    - unparam
