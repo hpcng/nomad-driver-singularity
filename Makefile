@@ -24,12 +24,12 @@ $(NAME): $(wildcard *.go) $(wildcard */*.go)
 .PHONY: fmt
 fmt: ## Verifies all files have been `gofmt`ed.
 	@echo "+ $@"
-	@gofmt -s -l . | grep -v '.pb.go:' | grep -v vendor | tee /dev/stderr
+	@gofmt -s -l . | tee /dev/stderr
 
 .PHONY: lint
 lint: ## Verifies `golint` passes.
 	@echo "+ $@"
-	@golint ./... | grep -v '.pb.go:' | grep -v vendor | tee /dev/stderr
+	@golint ./... | tee /dev/stderr
 
 .PHONY: test
 test: ## Runs the go tests.
