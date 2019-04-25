@@ -6,5 +6,6 @@ linters:
     - gocritic
     - lll
     - maligned
+    - scopelint
     - stylecheck
     - unparam
