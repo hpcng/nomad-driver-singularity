@@ -1,5 +1,7 @@
 # nomad-driver-singularity
 
+[![Code Coverage](https://codecov.io/gh/sylabs/nomad-driver-singularity/branch/master/graph/badge.svg)](https://codecov.io/gh/sylabs/nomad-driver-singularity)
+
 [Hashicorp Nomad](https://www.nomadproject.io/) driver plugin using
 [Singularity containers](https://github.com/sylabs/singularity) to execute tasks.
 
