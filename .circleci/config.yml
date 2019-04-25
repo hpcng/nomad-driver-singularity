@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.0.4
 
 defaults: &defaults
   working_directory: /src
@@ -6,7 +9,20 @@ defaults: &defaults
     - image: golang:1.12
 
 jobs:
-  get_source:
+  lint_markdown:
+    <<: *defaults
+    docker:
+      - image: node:11-slim
+    steps:
+      - checkout
+      - run:
+          name: Install markdownlint
+          command: npm install -g markdownlint-cli
+      - run:
+          name: Check for Lint
+          command: markdownlint .
+
+  cache_go_mod:
     <<: *defaults
     steps:
       - checkout
@@ -15,93 +31,63 @@ jobs:
             - go-mod-{{ checksum "go.sum" }}
       - run:
           name: Populate Go Mod Cache
-          command: |
-            if [ ! -d /go/pkg/mod ]; then
-              go mod download
-            fi
+          command: go mod download
       - save_cache:
           key: go-mod-{{ checksum "go.sum" }}
           paths:
-            - /go/pkg/mod
-      - run:
-          name: Go Mod Verify
-          command: go mod verify
-      - persist_to_workspace:
-          root: /
-          paths:
-            - go/pkg/mod
-            - src
+            - '/go/pkg/mod'
 
   build_source:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: /
+      - checkout
+      - restore_cache:
+          keys:
+            - go-mod-{{ checksum "go.sum" }}
       - run:
           name: Build Source
           command: make build
 
-  check_formatting:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: /
-      - run:
-          name: Check Formatting
-          command: test -z $(go fmt ./...)
-
-  vet_source:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: /
-      - run:
-          name: Vet Source
-          command: make vet
-
   lint_source:
     <<: *defaults
     steps:
-     - attach_workspace:
-         at: /
-     - run:
-         name: Install golangci-lint
-         command: curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin v1.15.0
-     - run:
-         name: Check for Lint
-         command: golangci-lint run ./...
-
-  lint_markdown:
-    docker:
-      - image: circleci/ruby:2.4.1-node
-    steps:
-      - attach_workspace:
-          at: .
+      - checkout
+      - restore_cache:
+          keys:
+            - go-mod-{{ checksum "go.sum" }}
       - run:
-          name: Install markdownlint
-          command: sudo npm install -g markdownlint-cli
+          name: Install golangci-lint
+          command: curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin v1.16.0
       - run:
           name: Check for Lint
-          command: markdownlint --config src/.markdownlint.json src/
+          command: golangci-lint run
+
+  unit_test:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - go-mod-{{ checksum "go.sum" }}
+      - run:
+          name: Run Tests
+          command: go test -coverprofile cover.out -race ./...
+      - codecov/upload:
+          file: cover.out
 
 workflows:
   version: 2
-  
+
   build_and_test:
     jobs:
-      - get_source
+      - lint_markdown
+      - cache_go_mod
       - build_source:
           requires:
-            - get_source
-      - check_formatting:
-          requires:
-            - get_source
-      - vet_source:
-          requires:
-            - get_source
+            - cache_go_mod
       - lint_source:
           requires:
-            - get_source
-      - lint_markdown:
+            - cache_go_mod
+      - unit_test:
           requires:
-            - get_source
+            - cache_go_mod
