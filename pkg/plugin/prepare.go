@@ -15,7 +15,7 @@ import (
 )
 
 // prepareContainer preloads the taskcnf into args to be apssed to a execCmd
-func prepareContainer(d *Driver, cfg *drivers.TaskConfig, taskCfg TaskConfig) syexec {
+func prepareContainer(cfg *drivers.TaskConfig, taskCfg TaskConfig) syexec {
 	argv := make([]string, 0, 50)
 	var se syexec
 	se.taskConfig = taskCfg
