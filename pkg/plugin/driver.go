@@ -466,5 +466,5 @@ func (d *Driver) SignalTask(taskID string, signal string) error {
 
 // ExecTask calls a exec cmd over a running task
 func (d *Driver) ExecTask(taskID string, cmd []string, timeout time.Duration) (*drivers.ExecTaskResult, error) {
-	return nil, fmt.Errorf("Singularity driver does not support exec") //TODO
+	return nil, fmt.Errorf("Singularity driver does not support exec")
 }
