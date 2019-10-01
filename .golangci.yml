@@ -9,3 +9,6 @@ linters:
     - scopelint
     - stylecheck
     - unparam
+  exclude:
+    - "not declared by package utf8"
+    - "unicode/utf8/utf8.go"
