@@ -1,9 +1,9 @@
 # nomad-driver-singularity
 
 [![GoDoc](https://godoc.org/github.com/sylabs/nomad-driver-singularity?status.svg)](https://godoc.org/github.com/sylabs/nomad-driver-singularity)
-[![Build Status](https://circleci.com/gh/sylabs/nomad-driver-singularity.svg?style=shield)](https://circleci.com/gh/sylabs/workflows/nomad-driver-singularity)
-[![Code Coverage](https://codecov.io/gh/sylabs/nomad-driver-singularity/branch/master/graph/badge.svg)](https://codecov.io/gh/sylabs/nomad-driver-singularity)
-[![Go Report Card](https://goreportcard.com/badge/github.com/sylabs/nomad-driver-singularity)](https://goreportcard.com/report/github.com/sylabs/nomad-driver-singularity)
+[![Build Status](https://circleci.com/gh/hpcng/nomad-driver-singularity.svg?style=shield)](https://circleci.com/gh/hpcng/workflows/nomad-driver-singularity)
+[![Code Coverage](https://codecov.io/gh/hpcng/nomad-driver-singularity/branch/master/graph/badge.svg)](https://codecov.io/gh/hpcng/nomad-driver-singularity)
+[![Go Report Card](https://goreportcard.com/badge/github.com/hpcng/nomad-driver-singularity)](https://goreportcard.com/report/github.com/hpcng/nomad-driver-singularity)
 
 [Hashicorp Nomad](https://www.nomadproject.io/) driver plugin using
 [Singularity containers](https://github.com/sylabs/singularity) to execute tasks.
